@@ -1,0 +1,93 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<div class="webring-container">
+  <h1 class="webring-title">{{ section.title }}</h1>
+  {{ section.content | safe }}
+
+  <!-- Static List of Webring Members -->
+  <ul class="webring-list">
+    <li>
+      <a href="https://example-haunted-site1.com" target="_blank">Site 1: Spooky Blog</a>
+      <span class="description">A blog dedicated to ghost stories and Halloween lore, with custom illustrations.</span>
+    </li>
+    <li>
+      <a href="https://example-haunted-site2.com" target="_blank">Site 2: Pixel Haunts</a>
+      <span class="description">Retro pixel art of haunted mansions and eerie landscapes, built with indie tools.</span>
+    </li>
+    <!-- Add more members here as needed -->
+    <li>
+      <a href="[YOUR_PREVIOUS_URL]" target="_blank">Previous Member</a>
+      <span class="description">The site before yours in the webring—check it out for more haunted vibes!</span>
+    </li>
+    <li>
+      <a href="[YOUR_NEXT_URL]" target="_blank">Next Member</a>
+      <span class="description">The next site in the chain, full of creative web experiments.</span>
+    </li>
+  </ul>
+
+  <!-- Standard Webring Navigation -->
+  <div class="webring-nav">
+    <p>Part of the <a href="https://hauntedwebring.net/" target="_blank">Haunted Webring</a></p>
+    <p>
+      <a href="[PREVIOUS_URL]" target="_blank">← Previous</a> |
+      <a href="https://hauntedwebring.net/random" target="_blank">Random</a> |
+      <a href="[NEXT_URL]" target="_blank">Next →</a>
+    </p>
+  </div>
+</div>
+{% endblock content %}
+
+{% block extra_head %}
+{{ super() }}
+<style>
+  .webring-container {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 2em;
+  }
+  .webring-title {
+    color: #666; /* Adjust to match Tranquil's dark theme if needed */
+    margin-bottom: 1em;
+  }
+  .webring-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    display: inline-block;
+    margin: 2em 0;
+  }
+  .webring-list li {
+    margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .webring-list a {
+    font-weight: bold;
+    color: #007bff; /* Link color; customize for Tranquil */
+    text-decoration: none;
+  }
+  .webring-list a:hover {
+    text-decoration: underline;
+  }
+  .description {
+    flex: 1;
+    margin-left: 1em;
+    font-style: italic;
+    color: #555;
+  }
+  .webring-nav {
+    margin-top: 2em;
+    font-size: 0.9em;
+  }
+  .webring-nav a {
+    color: #007bff;
+    text-decoration: none;
+  }
+  .webring-nav a:hover {
+    text-decoration: underline;
+  }
+</style>
+{% endblock extra_head %}
