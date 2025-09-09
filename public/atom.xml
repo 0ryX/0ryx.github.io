@@ -99,9 +99,9 @@ The Revolution&lt;&#x2F;h2&gt;
         
     </entry>
     <entry xml:lang="en">
-        <title>My second post</title>
-        <published>2025-08-13T00:00:00+00:00</published>
-        <updated>2025-08-13T00:00:00+00:00</updated>
+        <title>Hardening The Linux Kernel</title>
+        <published>2025-08-18T00:00:00+00:00</published>
+        <updated>2025-08-18T00:00:00+00:00</updated>
         
         <author>
           <name>
@@ -111,10 +111,306 @@ The Revolution&lt;&#x2F;h2&gt;
           </name>
         </author>
         
-        <link rel="alternate" type="text/html" href="https://0xblockz.xyz/blog/second/"/>
-        <id>https://0xblockz.xyz/blog/second/</id>
+        <link rel="alternate" type="text/html" href="https://0xblockz.xyz/blog/harden-kernal/"/>
+        <id>https://0xblockz.xyz/blog/harden-kernal/</id>
         
-        <content type="html" xml:base="https://0xblockz.xyz/blog/second/">&lt;p&gt;This is my second blog post.&lt;&#x2F;p&gt;
+        <content type="html" xml:base="https://0xblockz.xyz/blog/harden-kernal/">&lt;h1 id=&quot;hardening-the-linux-kernel&quot;&gt;&lt;span class=&quot;not-prose&quot;&gt;
+    &lt;a class=&quot;tl-link text-2xl&quot; 
+    href=&quot;#hardening-the-linux-kernel&quot; 
+    aria-label=&quot;Anchor link for: hardening-the-linux-kernel&quot;&gt;#&lt;&#x2F;a&gt;
+&lt;&#x2F;span&gt;
+Hardening The Linux Kernel&lt;&#x2F;h1&gt;
+&lt;h2 id=&quot;linux-hardening-for-a-better-tomorrow&quot;&gt;&lt;span class=&quot;not-prose&quot;&gt;
+    &lt;a class=&quot;tl-link text-2xl&quot; 
+    href=&quot;#linux-hardening-for-a-better-tomorrow&quot; 
+    aria-label=&quot;Anchor link for: linux-hardening-for-a-better-tomorrow&quot;&gt;#&lt;&#x2F;a&gt;
+&lt;&#x2F;span&gt;
+Linux Hardening For a Better Tomorrow&lt;&#x2F;h2&gt;
+&lt;p&gt;In our blog post from last year we discussed how the internet is in the age of corporate surveillance. With data being one of the biggest commodities today, people of the internet are fighting back with blogs like the indieweb, fediverse, lemme, and believe it or not, areas of the darkweb. Though our threat landscape is diverse and expansive, especially if you’re using the darkweb, on Linux systems there are different measures we can take to lock-down and harden our systems.&lt;&#x2F;p&gt;
+&lt;p&gt;Today’s focus will be on the Arch ecosystem. When your installing Arch, you’ll be given the option to choose which kernel you’d like. For those in the security sector, you’d choose the harden-kernel. But there are other options like Zen for performance and LTS for stability. Choosing the harden-kernel though gives a false sense of security due to a lot of points being left open to general users allow them to easily get a root shell and exposing important information on your system.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;kernel-exploitation&quot;&gt;&lt;span class=&quot;not-prose&quot;&gt;
+    &lt;a class=&quot;tl-link text-2xl&quot; 
+    href=&quot;#kernel-exploitation&quot; 
+    aria-label=&quot;Anchor link for: kernel-exploitation&quot;&gt;#&lt;&#x2F;a&gt;
+&lt;&#x2F;span&gt;
+Kernel Exploitation&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;en.wikipedia.org&#x2F;wiki&#x2F;Return-oriented%60_%60programming&quot;&gt;ROP&lt;&#x2F;a&gt;(Return-Oriented Programming) is a exploit technique that allows you to execute code in the presence of security defense. But since our attack surface is a lot bigger then that in userland you would probably want to use a script like &lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;JonathanSalwan&#x2F;ROPgadget&quot;&gt;ROPGadget&lt;&#x2F;a&gt; to automate scanning our attack surface. We’ll go into kernel exploitation in another post though, for now we’re locking down our system for a more hardened setup. Bit as we talk about the different settings you’ll get a good understanding of what all we could look for and use in a Red Team application.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;kernel-self-protection&quot;&gt;&lt;span class=&quot;not-prose&quot;&gt;
+    &lt;a class=&quot;tl-link text-2xl&quot; 
+    href=&quot;#kernel-self-protection&quot; 
+    aria-label=&quot;Anchor link for: kernel-self-protection&quot;&gt;#&lt;&#x2F;a&gt;
+&lt;&#x2F;span&gt;
+Kernel Self-Protection&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;In the following, we’ll be using the &lt;em&gt;sysctl&lt;&#x2F;em&gt; to change our kernel settings.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Kernel pointers point to a specific location in kernel memory and are not hidden by default. You can find them located in &lt;em&gt;&#x2F;proc&#x2F;kallsysms&lt;&#x2F;em&gt; The following settings aim to mitigate kernel pointer leaks.&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;kernel.kptr_restrict=2&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Alternatively, you can set kernel.ktpr_restict=1 to only hide kernel pointers from processes without “CAP_SYSLOG” capability.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;kernel.dmesg_restrict=1&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;em&gt;dmesg&lt;&#x2F;em&gt; is the kernel log. It exposes a large amount of useful kernel debugging information, which can often leak sensitive data, such as kernel pointers. Above restricts the kernel log to “CAP_SYSLOG”&lt;&#x2F;p&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;kernel.printk=3 3 3 3&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Despite the value of dmesg_restrict, the kernel log will still be displayed in the console during boot. Malware that is able to record the screen during boot may be able to abuse this to gain higher privileges. This must be used in combination with certain boot parameters.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;kernel.unprivileged_bpf_disable=1&lt;&#x2F;li&gt;
+&lt;li&gt;net.core.bpf_jit_harden=2&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;&lt;strong&gt;eBPF&lt;&#x2F;strong&gt; exposes quite large attack surface. As such, it must be restricted. these sysctls restrict eBPF to the “CAP_BPF” capability (CAP_SYS_ADMIN on kernel versions prior to 5.8) and enable JIT hardening techniques, such as constant blinding.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;6&quot;&gt;
+&lt;li&gt;dev.tty.ldisc_autoload=0&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This restricts loading TTY line disciplines to the “CAP_SYS_MODULE” capability to prevent unprivileged attackers from loading vulnerable line disciplines with the “TIOCSETD ioctl” which has been abused in a number of exploits before.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;7&quot;&gt;
+&lt;li&gt;vm.unprivileged_userfaultfd=0&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;The “userfaultfd()” syscall is often abused to exploit use-after-free flaws. Due to this, this sysctl is used to restrict this syscall to the &lt;em&gt;CAP_SYS_PTRACE&lt;&#x2F;em&gt; capability.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;8&quot;&gt;
+&lt;li&gt;kernel.kexec_load_disable=1&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Kexec is a system call this is used to boot another kernel during runtime. This functionality can be abused to load malicious kernel and gain arbitrary code execution in kernel mode, so the sysctl disables it.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;9&quot;&gt;
+&lt;li&gt;kernel.sysrq=4&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;The &lt;em&gt;SysRq&lt;&#x2F;em&gt; key exposes a lot of potentially dangerous debugging functionality to unprivileged users. Contrary to common assumptions, SysRq is not only an issue for physical attacks, as it can also be triggered remotely.The value of this sysctl makes it so that a user can only use the secure attention key, which will be necaessary for accessing root securely. Alternatively, you can simply set the value to 0 to disable SysRq completely.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;10&quot;&gt;
+&lt;li&gt;kernel.unprivileged_userns_clone=0&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;User namespaces are a feature in the kernel which aim to improve sandboxing and make it easily accessible for unprivileged users. However, this feature exposes signigicant kernel attack surface for privileged escalation, so this sysctl restricts the usage of user namespaces to the “CAP_SYS_ADMIN” capability. For unprivileged sandboxing, it is instead recommended to use a setuid binary with little attack surface to minimise the potential for privilege escalation.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;strong&gt;Be aware though that this sysctl only exists on certain Linux Distros, as it requires a kernel patch. Alternatively you can disable user namespaces completely ( including for root ) by setting&lt;&#x2F;strong&gt; &lt;em&gt;user.max_user_namespaces=0&lt;&#x2F;em&gt;&lt;&#x2F;p&gt;
+&lt;ol start=&quot;11&quot;&gt;
+&lt;li&gt;kernel.perf_event_paranoid=3&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Preformance events add considerable kernel attack surface and have caused abundant vulnerabilities. This sysctl restricts all usage of performance events to the &lt;strong&gt;CAP_PERFORM&lt;&#x2F;strong&gt; capability. ( &lt;strong&gt;CAP_SYS_ADMIN&lt;&#x2F;strong&gt; on kernel versions prior to 5.8 )&lt;&#x2F;p&gt;
+&lt;p&gt;Be aware that this sysctl also requires a kernel patch, otherwise &lt;em&gt;kernel.perf_event_paranoid=2&lt;&#x2F;em&gt; only restricts a subset of this functionality.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;network-self-protection&quot;&gt;&lt;span class=&quot;not-prose&quot;&gt;
+    &lt;a class=&quot;tl-link text-2xl&quot; 
+    href=&quot;#network-self-protection&quot; 
+    aria-label=&quot;Anchor link for: network-self-protection&quot;&gt;#&lt;&#x2F;a&gt;
+&lt;&#x2F;span&gt;
+Network Self-Protection&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;net.ipv4.tcp_syncookies=1&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This helps protect against SYN flood attacks, which are a form of denial-of-service attack, in which an attacker sends a large amount of bogus SYN requests in an attempt to consume enough resources to make the system unresponsive to legitimate traffic.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;net.ipv4.tcp_rfc1337=1&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This protects against time-wait assassination by dropping RST packets for sockets in the time-wait state.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;net.ipv4.conf.all.rp_filter=1
+net.ipv4.conf.default.rp_filter=1&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;These enable source validation of packets received from all interfaces of the machine. This protects against IP spoofing, in which a attacker sends a packet with a fraudulant IP address.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;net.ipv4.conf.all.accept_redirects=0
+net.ipv4.conf.default.accept_redirects=0
+net.ipv4.conf.all.secure_redirects=0
+net.ipv4.conf.default.sercure+redirects=0
+net.ipv6.conf.all.accept+redirects=0
+net.ipv6.conf.default.accept_redirects=0
+net.ipv4.conf.all.send+redirects=0
+net.ipv4.conf.default.send_redirects=0&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;These disable ICMP redircet acceptance and sending to prevent man-in-the-middle attacks and minimise information disclosure.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;5&quot;&gt;
+&lt;li&gt;net.ipv4.icmp_echo_ignore_all=1&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;this setting makes your system ignore all ICMP requests to avoid Smurf attacks, makes the device more difficult to enumerate onthe network and prevent clock fingerprinting through ICMP timestamps.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;6&quot;&gt;
+&lt;li&gt;net.ipv4.conf.all.accept_source_route=0
+net.ipv4.conf.default.accept_source_route=0
+net.ipv4.conf.all.accept_source_route=0
+net.ipv4.conf.default.accept_source_route=0&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Source routing is a mechanism tha allows users to redirect network traffic. As this can be used to preform man-in-the-middle attacks in which the traffic is redirceted for nefarious purposes.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;7&quot;&gt;
+&lt;li&gt;net.ipv6.conf.all.accept_ra=0
+net.ipv6.conf.default.accept_ra=0&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;Malicious IPv6 router advertisements can result in a man-in-the-middle attack.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;8&quot;&gt;
+&lt;li&gt;net.ipv4.tcp_sack=0
+net.ipv4.tcp_dsack=0
+net.ipv4.tcp_fake=0&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This disables TCP SACK. SACK is commonly exploited and unnecessary in many circumstances. so it should be disabled if it is not required&#x2F;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;user-space-self-protection&quot;&gt;&lt;span class=&quot;not-prose&quot;&gt;
+    &lt;a class=&quot;tl-link text-2xl&quot; 
+    href=&quot;#user-space-self-protection&quot; 
+    aria-label=&quot;Anchor link for: user-space-self-protection&quot;&gt;#&lt;&#x2F;a&gt;
+&lt;&#x2F;span&gt;
+User-Space Self-Protection&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;kernel.yama.ptrace_scope=2&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;ptrace is a system call that allows a program to alter and inspect another running process, which allows attackers to trivially modify the memory of other running programs. This restricts usage of ptrace to only processes with the CAP_SYS_PTRACE capability. Alternatively, set the sysctl to 3 to disable ptrace entirely.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;vm.mmap_rnd_bits=32
+vm.mmap_rnd_compat_bits=16&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;ASLR is a common exploit mitigation which randomises the position of critcal parts of a process in memory&#x2F; This can make a wide variety of exploits harder to pull off, as they first require an information leak. The above settings increase the bits of entropy used for mmap ASLR, improving its effectiveness.&lt;&#x2F;p&gt;
+&lt;p&gt;The values of these sysctls must be set in relation to the CPU architecture. The above values are compatible with x86, but other architectures may differ.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;3&quot;&gt;
+&lt;li&gt;fs.protected_syslinkms=1
+fs.protected_hardlinks=1&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This only permits symlinks to be followed when outside of a world-writable sticky directory, when the owner of the symlink and follower match or when the firectory owner matches the symlink’s owner. This also prevents hardlinks from being created by users that do not have read&#x2F;write asscess to the source file. Both of these prevent many common TOCTOU races.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;fs.protected_fifos=2
+fs.protected_regular=2&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;These prevent creating files in potentially attacker-controlled environments, such as world-writable directories, to make data spoofing attacks more difficult.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;boot-parameters&quot;&gt;&lt;span class=&quot;not-prose&quot;&gt;
+    &lt;a class=&quot;tl-link text-2xl&quot; 
+    href=&quot;#boot-parameters&quot; 
+    aria-label=&quot;Anchor link for: boot-parameters&quot;&gt;#&lt;&#x2F;a&gt;
+&lt;&#x2F;span&gt;
+Boot parameters&lt;&#x2F;h2&gt;
+&lt;p&gt;Boot parameters pass settings to the kernel at boot using your bootloeader. Some settings can be used to increase security, similar to sysctl. Bootloaders often differ in how boot parameters are set. A few examples are listed below, but you should research the required steps for your specific bootloader.&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;If using Grub as your bootloader, edit &lt;em&gt;&#x2F;etc&#x2F;default&#x2F;grub&lt;&#x2F;em&gt;, and add your parameters to the &lt;strong&gt;GRUB&lt;code&gt;_&lt;&#x2F;code&gt;CMDLINE&lt;code&gt;_&lt;&#x2F;code&gt;DEFAULT=&lt;&#x2F;strong&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;If using Syslinux, edit &lt;em&gt;&#x2F;boot&#x2F;syslinux.cfg&lt;&#x2F;em&gt;, and add them to the APPEND line.&lt;&#x2F;li&gt;
+&lt;li&gt;If using systemd-boot, edit your loader entry, and append them to the end of the linux line.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;The following settings are recommended to increase security.&lt;&#x2F;p&gt;
+&lt;p&gt;This section originally recommended to apply various slub&lt;code&gt;_&lt;&#x2F;code&gt;debug options; however, due to Linux deciding to implicitly disable kernel pointer hashing when using this option, in addition to several other issues with these features, they can no longer be recommended. Users are instead advised to use init&lt;code&gt;_&lt;&#x2F;code&gt;on&lt;code&gt;_&lt;&#x2F;code&gt;free as a replacement for memory poisoning and linux-hardened’s slab canaries in place of redzoning. If slub&lt;code&gt;_&lt;&#x2F;code&gt;debug is in use for anything other than debugging, it is highly recommended to remove it immediately.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;kernel-self-protection-1&quot;&gt;&lt;span class=&quot;not-prose&quot;&gt;
+    &lt;a class=&quot;tl-link text-2xl&quot; 
+    href=&quot;#kernel-self-protection-1&quot; 
+    aria-label=&quot;Anchor link for: kernel-self-protection-1&quot;&gt;#&lt;&#x2F;a&gt;
+&lt;&#x2F;span&gt;
+Kernel Self-Protection&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;slab_normerge&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This disables slab merging, which significantly increase the difficulty of heap exploitation by preventing overwriting objects from merged caches and by making it harder to influence slab cheche layout.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;2&quot;&gt;
+&lt;li&gt;init_on_alloc=1&lt;&#x2F;li&gt;
+&lt;li&gt;init_on_free=1&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This enables zeroing of memory during alloctation and free time, which can help mitigate use-after-free vulnerabilities and erase sensitive information in memory.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;4&quot;&gt;
+&lt;li&gt;page_alloc.shuffle=-18&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This option randomizes page allocator freelists, improving security by making page allocations less predictable. This also improves performance.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;5&quot;&gt;
+&lt;li&gt;&lt;em&gt;pti=on&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This enables Kernel Page Table Isolation, which mitigates Meltdown and prevents some KASLR bypasses.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;6&quot;&gt;
+&lt;li&gt;&lt;em&gt;randomize_kstack_offset=on&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This option randomises the kernel stack offset on each syscall, which makes attacks that rely on deterministic kernel stack layout significantly more difficult, such as the exploitation of CVE-2019-18683.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;7&quot;&gt;
+&lt;li&gt;&lt;em&gt;vsycall=none&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This disables vsyscalls, as they are obsolete and have been replaced with vDSO. vsyscalls are also at fixed addresses in memory, making them a potential target for ROP attacks.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;8&quot;&gt;
+&lt;li&gt;&lt;em&gt;debugfs=off&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This disables debugfs, which exposes a lot of sensitive information about the kernel.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;9&quot;&gt;
+&lt;li&gt;&lt;em&gt;oops=panic&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This only allows kernel modules that have been signed with a valid key to be loaded, which increases security by making it much harder to load a malicious kernel module. This prevents all out-of-tree kernel modules, including DKMS modules from being loaded unless you have signed them, meaning that modules such as the VirtualBox or Nvidia drivers may not be usable, although that may not be important, depending on your setup.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;10&quot;&gt;
+&lt;li&gt;&lt;em&gt;lockdown=configdentiality&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;The kernel lockdown LSM can eliminate many methods that user space code could abuse to escalate to kernel privileges and extract sensitive information. This LSM is necessary to implement a clear security boundary between user space and the kernel. The above option enables this feature in confidentiality mode, the strictest option. This implies module.sig&lt;code&gt;_&lt;&#x2F;code&gt;enforce=1.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;11&quot;&gt;
+&lt;li&gt;&lt;em&gt;mce=0&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;This causes the kernel to panic on uncorrectable errors in ECC memory which could be exploited. This is unnecessary for systems without ECC memory.&lt;&#x2F;p&gt;
+&lt;ol start=&quot;12&quot;&gt;
+&lt;li&gt;&lt;em&gt;quiet loglevel=0&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;These parameters prevnet information leaks during boot and must be used in combination with the kernel.printk sysctl documented above.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;cpu-mitigations&quot;&gt;&lt;span class=&quot;not-prose&quot;&gt;
+    &lt;a class=&quot;tl-link text-2xl&quot; 
+    href=&quot;#cpu-mitigations&quot; 
+    aria-label=&quot;Anchor link for: cpu-mitigations&quot;&gt;#&lt;&#x2F;a&gt;
+&lt;&#x2F;span&gt;
+CPU Mitigations&lt;&#x2F;h2&gt;
+&lt;p&gt;It is best to enable all CPU mitigations that are applicable to your CPU as to ensure that you are not affected by known vulnerabilities. This is a list that enables all built-in mitigations:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;em&gt;spectre_v2=on&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;spec_store_bypass_disable=on&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;tsx=off&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;tsx_async_abort=full,nosmt&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;mds=full,nosmt&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;l1tf=full,force&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;nosmt=force&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;kvm.nx_huge_pages=force&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;You must research the CPU vulnerabilities that your system is affected by and apply a selection of the above mitigations accordingly. Keep in mind that you will need to install microcode updates to be fully protected from these vulnerabilities. All of these may cause a significant performance decrease.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;result&quot;&gt;&lt;span class=&quot;not-prose&quot;&gt;
+    &lt;a class=&quot;tl-link text-2xl&quot; 
+    href=&quot;#result&quot; 
+    aria-label=&quot;Anchor link for: result&quot;&gt;#&lt;&#x2F;a&gt;
+&lt;&#x2F;span&gt;
+Result&lt;&#x2F;h2&gt;
+&lt;p&gt;If you have followed all of the above recommendations, excluding your specific CPU mitigations, you will have:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;em&gt;slab_nomerge&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;init_on_alloc=1&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;init_on_free=1&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;page_alloc.shuffle=1&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;pti=on&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;vsyscall=none&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;debugfs=off&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;oops=panic&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;module.sig_enforce=1&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;lockdown=confidentiality&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;mce=0&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;quiet&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;em&gt;loglevel=0&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+&lt;p&gt;You may need to regenerate your GRUB configuration file to apply these if using GRUB as your bootloader.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;hidepid&quot;&gt;&lt;span class=&quot;not-prose&quot;&gt;
+    &lt;a class=&quot;tl-link text-2xl&quot; 
+    href=&quot;#hidepid&quot; 
+    aria-label=&quot;Anchor link for: hidepid&quot;&gt;#&lt;&#x2F;a&gt;
+&lt;&#x2F;span&gt;
+HidePID&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;em&gt;&#x2F;proc&lt;&#x2F;em&gt; is a pseudo-filesystem that contains information about all processes currently running on the system. By default, this is accessible to all users, which can allow an attacker to spy on other processes. To permit users to only see their own processes and not those of other users, you must mount &lt;em&gt;&#x2F;proc&lt;&#x2F;em&gt; with the &lt;strong&gt;hidepid=2&lt;&#x2F;strong&gt;,&lt;strong&gt;gid=proc&lt;&#x2F;strong&gt; mount options. &lt;strong&gt;gid=proc&lt;&#x2F;strong&gt; exempts the proc group from this feature so you can whitelist specific users or processes. One way to add these mount options is to edit &lt;em&gt;&#x2F;etc&#x2F;fstab&lt;&#x2F;em&gt; and add:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;markdown&quot; class=&quot;language-markdown z-code&quot;&gt;&lt;code class=&quot;language-markdown&quot; data-lang=&quot;markdown&quot;&gt;&lt;span class=&quot;z-text z-html z-markdown&quot;&gt;&lt;span class=&quot;z-meta z-paragraph z-markdown&quot;&gt;proc &#x2F;proc proc nosuid,nodev,noexec,hidepid=2,gid=proc 0 0
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;systemd-logind still needs to see other users’ processes, so for user sessions to work correctly on a systemd system, you must create &lt;em&gt;&#x2F;etc&#x2F;systemd&#x2F;system&#x2F;systemd-logind.service.d&#x2F;hidepid.conf&lt;&#x2F;em&gt; and add:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;markdown&quot; class=&quot;language-markdown z-code&quot;&gt;&lt;code class=&quot;language-markdown&quot; data-lang=&quot;markdown&quot;&gt;&lt;span class=&quot;z-text z-html z-markdown&quot;&gt;&lt;span class=&quot;z-meta z-paragraph z-markdown&quot;&gt;[Service]
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;span class=&quot;z-text z-html z-markdown&quot;&gt;&lt;span class=&quot;z-meta z-paragraph z-markdown&quot;&gt;SupplementaryGroups=proc
+&lt;&#x2F;span&gt;&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;h2 id=&quot;kernel-attack-surface-reduction&quot;&gt;&lt;span class=&quot;not-prose&quot;&gt;
+    &lt;a class=&quot;tl-link text-2xl&quot; 
+    href=&quot;#kernel-attack-surface-reduction&quot; 
+    aria-label=&quot;Anchor link for: kernel-attack-surface-reduction&quot;&gt;#&lt;&#x2F;a&gt;
+&lt;&#x2F;span&gt;
+Kernel Attack Surface Reduction&lt;&#x2F;h2&gt;
+&lt;p&gt;It is best to disable any functionality that is not absolutely required as to minimise potential kernel attack surface. These features do not necessarily have to be dangerous; they could simply be benign code that is removed to reduce attack surface. Never disable random things that you don’t understand. The following are some examples that may be of use, depending on your setup.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;boot-parameters-1&quot;&gt;&lt;span class=&quot;not-prose&quot;&gt;
+    &lt;a class=&quot;tl-link text-2xl&quot; 
+    href=&quot;#boot-parameters-1&quot; 
+    aria-label=&quot;Anchor link for: boot-parameters-1&quot;&gt;#&lt;&#x2F;a&gt;
+&lt;&#x2F;span&gt;
+Boot Parameters&lt;&#x2F;h2&gt;
+&lt;p&gt;Boot parameters can often be used to reduce attack surface. One such example is:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;ipv6.disable=1&lt;&#x2F;em&gt;&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;This disables the entire IPv6 stack which may not be required if you have not migrated to it. Do not use this boot parameter if you are using IPv6.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;blacklisting-kernel-modules&quot;&gt;&lt;span class=&quot;not-prose&quot;&gt;
+    &lt;a class=&quot;tl-link text-2xl&quot; 
+    href=&quot;#blacklisting-kernel-modules&quot; 
+    aria-label=&quot;Anchor link for: blacklisting-kernel-modules&quot;&gt;#&lt;&#x2F;a&gt;
+&lt;&#x2F;span&gt;
+Blacklisting Kernel modules&lt;&#x2F;h2&gt;
+&lt;p&gt;The kernel allows unprivileged users to indirectly cause certain modules to be loaded via module auto-loading. This allows an attacker to auto-load a vulnerable module which is then exploited. One such example is &lt;a rel=&quot;noopener nofollow noreferrer&quot; target=&quot;_blank&quot; href=&quot;https:&#x2F;&#x2F;github.com&#x2F;xairy&#x2F;kernel-exploits&#x2F;tree&#x2F;master&#x2F;CVE-2017-6074&quot;&gt;CVE-2017-6074&lt;&#x2F;a&gt;, in which an attacker could trigger the DCCP kernel module to be loaded by initiating a DCCP connection and then exploit a vulnerability in said kernel module.&lt;&#x2F;p&gt;
+&lt;p&gt;Specific kernel modules can be blacklisted by inserting files into &#x2F;etc&#x2F;modprobe.d with instructions on which kernel modules to blacklist&lt;&#x2F;p&gt;
 </content>
         
     </entry>
