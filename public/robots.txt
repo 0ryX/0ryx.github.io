@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 Allow: /
-Sitemap: https://0xblockz.xyz/sitemap.xml
+Sitemap: https://0ryx.github.io/sitemap.xml

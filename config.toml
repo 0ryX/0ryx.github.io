@@ -1,6 +1,6 @@
 # serene v1.2.0 (check for update at https://github.com/isunjn/serene/releases)
 
-base_url = "https://0xblockz.xyz"      # Domain name of your website
+base_url = "https://0ryx.github.io"      # Domain name of your website
 title = "0xBlockz"
 description = "Welcome to 0xBlockz, a static blog dedicated to infosec 🖥️, malware dev 🏴, coding 🦀 and linux 🐧"
 default_language = "en"
