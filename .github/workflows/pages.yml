@@ -35,8 +35,7 @@ jobs:
         working-directory: ./themes/tranquil
         run: |
           npm install
-          npx run tw
-          #npx tailwindcss -i ./styles/styles.css -o ./static/styles/styles.css
+          npx tailwindcss -i ./styles/styles.css -o ./static/styles/styles.css
 
       - name: Build Zola Site
         run: zola build
