@@ -17,7 +17,12 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          submodules: true  # Critical for Tranquil
+          submodules: true  # Fetches themes/tranquil
+
+      - name: Install Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
 
       - name: Install Zola
         run: |
@@ -25,6 +30,12 @@ jobs:
           tar -xzf zola-v0.20.0-x86_64-unknown-linux-gnu.tar.gz
           sudo mv zola /usr/local/bin/
           zola --version
+
+      - name: Build Tailwind CSS
+        working-directory: ./themes/tranquil
+        run: |
+          npm install
+          npx tailwindcss -i ./styles/styles.css -o ./static/styles/styles.css
 
       - name: Build Zola Site
         run: zola build
