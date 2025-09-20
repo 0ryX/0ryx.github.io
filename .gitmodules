@@ -1,0 +1,3 @@
+[submodule "themes/themes/tranquil"]
+	path = themes/themes/tranquil
+	url = https://github.com/teadrinkingprogrammer/tranquil.git
