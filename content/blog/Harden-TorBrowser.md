@@ -294,11 +294,11 @@ In my opinion, a uniqueness of around 1 out of 800 is a great balance, it lets y
 
 On Tails, before making any changes and with the security level set to Safest, I got a uniqueness score of 1 out of 144.46. After making all the changes from this guide except for the extreme hardening options and setting privacy.trackingprotection.enabled to false, my score was 1 out of 143.1. This shows that all these settings, except the extreme hardening ones, and privacy.trackingprotection.enabled set to false, actually increase anonymity while still closing important security flaws. I left out the extreme hardening options because those are specifically for closing extra security vulnerabilities, even if it means sacrificing some anonymity.
 
-How to Instantly Apply and Save All Tor Browser About:Config Settings on Tails
+## How to Instantly Apply and Save All Tor Browser About:Config Settings on Tails
 
 If you use Tails, Whonix, or any disposable Linux and want to apply your custom Tor Browser or Firefox settings in seconds (instead of clicking through about:config every time), do this:
 
-1. Make Your user.js File
+**1. Make Your user.js File**
 
 Open a plain text editor, and paste all your settings in this format (one per line):
 user_pref("privacy.sanitize.sanitizeOnShutdown", true);
@@ -312,7 +312,7 @@ For words: user_pref("setting.name", "string");
 
 Then Save the file as user.js (not .txt)
 
-2. Save user.js in Persistent Storage
+**2. Save user.js in Persistent Storage**
 
 Start Tor Browser at least once so it makes its profile folder, and make sure to set to safest. Open your home folder, go to:
 /home/amnesia/.tor-browser/profile.default/ (On some systems it’s /home/amnesia/tor-browser/Browser/TorBrowser/Data/Browser/profile.default/)
@@ -321,10 +321,10 @@ If you don’t see the folder, click the three lines at the top of the file mana
 
 Copy your user.js file from Persistent into this folder. Overwrite if it already exists.
 
-4. Restart Tor Browser
+**4. Restart Tor Browser**
 Restart Tor Browser, all your settings from user.js will be loaded automatically. You do not need to use about:config. If you forgot to put it on Safest then you will see “custom security”, if you see that then change it to safest. All the configs will still be saved.
 
-5. Any Time You Update Your Settings
+**5. Any Time You Update Your Setting**s
 Just edit your user.js in Persistent, save it, and copy it again after you reboot.
 
 Before you add the user.js file to the folder, make sure you Open Tor once, and set security to safest. then exit, and move the user.js file to the tor profile folder.
