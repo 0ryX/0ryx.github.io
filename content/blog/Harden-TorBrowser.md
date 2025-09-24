@@ -3,7 +3,7 @@ title = "Hardening Tor Browser"
 date = "2025-09-24"
 +++
 
-# Guide: Hardened Tor Browser, Advanced OPSEC for Maximum Anonymity
+# Hardened Tor Browser, Advanced OPSEC for Maximum Anonymity
 
 If you’re reading this, you probably already know that real privacy online takes more than just using Tor Browser or following a checklist. Over the last few years, tracking techniques have advanced, and the loss of true OS spoofing in Tor Browser has made small differences in your configuration or hardware even more important. While hardening your browser and adjusting settings can close real security holes and reduce your exposure to tracking, it can also make your setup more unique compared to the default Tor Browser, which could actually hurt your anonymity by making you stand out.
 
@@ -11,9 +11,9 @@ The default Tor Browser is designed to make all users blend together, maximizing
 
 Before making changes, understand that for some people, blending in by sticking to the Tor defaults may be the best choice. For others, closing every possible security hole may be worth a little extra uniqueness. There is no one-size-fits-all answer, so use these settings thoughtfully and always test your setup to see how it performs both for privacy and anonymity. At the end of the guide, I’ll share the actual anonymity test results I got after applying these settings, so you can see the impact for yourself.
 
-you probably already know the biggest OPSEC fails don’t happen because you “slip up” with PGP or forget to double-encrypt files. The real leaks happen in your browser, metadata, unique fingerprints, storage, and side-channels all get weaponized by LE and deanonymization researchers. Tor Browser is good out of the box, but if you really want to keep your activity, identity, and even hardware off the record (whether you’re a vendor, buyer, or privacy freak), you need to harden it yourself.
+![ninja shit](/img/giphy.webp)
 
-I was active as a large-scale street reseller and wholesale buyer from 2017 to 2021 using these exact settings, and the mindset to nuke traces. Here’s a comprehensive list of advanced Tor Browser about:config tweaks, with a short explanation for each so you understand why they’re set, not just what they do. None of these settings will break any DNM site, Dread, Pitch, or anything onion-related. As I said, I’ve used this configuration for a while now.
+you probably already know the biggest OPSEC fails don’t happen because you “slip up” with PGP or forget to double-encrypt files. The real leaks happen in your browser, metadata, unique fingerprints, storage, and side-channels all get weaponized by LE and deanonymization researchers. Tor Browser is good out of the box, but if you really want to keep your activity, identity, and even hardware off the record, you need to harden it yourself.
 
 Before you start, you’ll need to access Tor Browser’s advanced settings. Open Tor Browser, type about:config in the address bar, and press Enter. You’ll see a warning, click “Accept the Risk and Continue.” Now you can use the search bar to find any setting in this guide. If a setting already exists, double-click to toggle true/false values, or click the pencil icon to enter numbers or text. If a feature doesn’t exist (mostly all these already exist), you can always create it: click the plus (+) button, then pick “Boolean” for true/false, “Number” for numbers, or “String” for words (rare). Every change takes effect immediately, and you don’t need to restart the browser unless otherwise noted. this will also work to harden Firefox, and Mullvad Browser. Also, remember to save these settings to a config file so you don’t have to repeat everything if you are using a disposable system.
 
