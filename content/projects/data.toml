@@ -1,17 +1,8 @@
 [[projects]]
-name = "My First Project"
-description = "This is the description of the first project."
-tags = ["security", "rust"]
+name = "My PGP Public Key"
+description = "This is my PGP public key if you would like to contact me"
+tags = ["security"]
 links = [
-  { name = "GitHub", url = "https://github.com/oryx/project1" }
-]
-
-[[projects]]
-name = "Second Project"
-description = "Description of the second project here."
-tags = ["linux", "zola"]
-links = [
-  { name = "Site", url = "https://example.com/project2" },
-  { name = "Repo", url = "https://git.codeberg.org/oryx/project2" }
+  { name = "PGP Key", url = "https://termbin.com/s1oe" }
 ]
 
