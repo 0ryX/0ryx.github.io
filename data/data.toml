@@ -1,7 +1,18 @@
 [[projects]]
-name = "My PGP Public Key"
-description = "This is my PGP Public Key"
+name = "PGP Public Key"
+description = "This is my PGP public key if you would like to contact me"
 tags = ["security"]
 links = [
-  { name = "Termbin", url = "https://termbin.com/s1oe" }
+  { name = "PGP Key", url = "https://termbin.com/s1oe" },
+  { name = "PGP Key", url = "https://pastebin.com/iTHmZ62K"}
+
 ]
+
+[[projects]]
+name = "Webring"
+description = "This is a webring of ghosts 👻"
+tags = ["webring"]
+links = [
+  { name = "Haunted Webring", url = "https://raw.githubusercontent.com/VVX7/haunted-webring/main/webring.txt"},
+]
+
