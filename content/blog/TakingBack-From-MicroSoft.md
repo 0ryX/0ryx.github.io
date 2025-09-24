@@ -7,7 +7,7 @@ date = "2025-09-20"
 
 Windows 10 is coming to the end of it's life span and even though I haven't used Windows or their products in over a decade - I am getting a lot of friends coming up to me and asking how to install Windows 11 for free. Now my first reaction to situations like this is always "why don't you give Linux a try?"
 
-![Bearnie-Linux](static/img/Bearnie-Linux.png)
+![Bearnie-Linux](/static/img/Bearnie-Linux.png)
 
 ## Endless Adds and Paywals
 
@@ -44,6 +44,7 @@ Once all that has finished you will then need to restart your computer and boot 
 
 Windows 11
 |Product | KMS Key |
+|--------|---------|
 |Windows 11 Education N |2WH4N-8QGBV-H22JP-CT43Q-MDWWJ |
 |Windows 11 Education |NW6C2-QMPVW-D7KKK-3GKT6-VCFB2 |
 |Windows 11 Enterprise G N |44RPN-FTY23-9VTTB-MP9BX-T84FV |
