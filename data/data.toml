@@ -1,6 +1,6 @@
 [[projects]]
 name = "PGP Public Key"
-description = "This is my PGP public key if you would like to contact me"
+description = "This is my PGP public key if you would like to contact me 🔒"
 tags = ["security"]
 links = [
   { name = "PGP Key", url = "https://termbin.com/s1oe" },
