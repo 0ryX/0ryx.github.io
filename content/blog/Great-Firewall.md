@@ -9,7 +9,7 @@ Last month [China's Great Firewall](https://gfw.report/blog/geedge_and_mesa_leak
 
 ### Download:
 
-- **Bittorrent:** [](https://enlacehacktivista.org/geedge.torrent)
+- **Bittorrent:** [https://enlacehacktivista.org/geedge.torrent](https://enlacehacktivista.org/geedge.torrent)
 
 Due to the highly sensitive nature of these leaked materials, we strongly advise anyone who chooses to download and analyze them to take proper operational security precautions. It may be possible that these files may contain potentially risky content and accessing them in an insecure environment could expose you to surveillance or malware.
 
@@ -41,7 +41,7 @@ Since it's a complete guide I'll have to go over the basics. You can skip this c
 
 Proxy is server in the middle whom processes your requests to website and other servers. Proxies can hide your IP from websites and they have a lot of legitimate uses too.
 
-{% note(header="Note") %}
+{% note(header="Quote") %}
 Your IP --- Proxy IP --- Website
 {% end %}
 
@@ -53,13 +53,13 @@ If the proxy is configured well and your end too, the website will only see the 
 
 If we take the example
 
-{% note(header="Note") %}
+{% note(header="Quote") %}
 Your IP --- Proxy IP --- Website
 {% end %}
 
 on ISP level
 
-{% note(header="Note") %}
+{% note(header="Quote") %}
 Your IP --- Proxy IP --- Website
 <----ISP---->
 {% end %}
@@ -68,7 +68,7 @@ Your ISP can read your traffic direct without any problems and see what websites
 
 VPN would have the same functionality to hide your IP.
 
-{% note(header="Note") %}
+{% note(header="Quote") %}
 Your IP --- VPN IP --- Website
 ////ISP////
 {% end %}
@@ -112,7 +112,7 @@ We'll talk at length at the end of the article but for now know recent VLESS ove
 
 Honorable mentions of protocols, tunnels and solutions I won't get into are mKCP, Cloak, Hysteria, NaiveProxy, Sing box. If you'd like a more complete historic background with the drama and the whys I suggest to visit
 
-[](https://vk.com/@s0r0kan-tehnologii-obhoda-blokirovok-v2ray-xray-xtls-hysteria-cloak)
+[https://vk.com/@s0r0kan-tehnologii-obhoda-blokirovok-v2ray-xray-xtls-hysteria-cloak](https://vk.com/@s0r0kan-tehnologii-obhoda-blokirovok-v2ray-xray-xtls-hysteria-cloak)
 
 ## VLESS+TLS vs VLESS+XTLS
 
@@ -227,11 +227,11 @@ In this example GFW on its end fingerprints the ClientHello (JA3), checks the SN
 
 I won't get into TLS fingerprinting as it probably deserves a topic on its own (used in antidetect browsers) but you can visit
 
-[](https://tls.peet.ws)
+[https://tls.peet.ws](https://tls.peet.ws)
 
 for a large TLS fingerprint database run by volunteers. Another one is
 
-[](https://ja3.zone)
+[https://ja3.zone](https://ja3.zone)
 
 It helps us get insight into most common fingerprints and ability to append our own to these in order to bypass firewalls whom use wide spread collection of such on their own as the GFW. I'll use example real fingerprint from there to illustrate about our topic. TLS fingerprinting can be useful in corporate networks too where you'd want to get outside connection or silently extract data without triggering red flags (bonus not all protocols are watched).
 
@@ -335,20 +335,20 @@ I'd caution against making mistakes like repeating the same IP or domain leading
 
 XTLS - contains libraries and specifications
 
-[](https://github.com/xtls)
+[https://github.com/xtls](https://github.com/xtls)
 
 XRAY CORE - VLESS, VMESS, XTLS, REALITY, VISION.
 
-[](https://github.com/xtls/xray-core)
-[](https://github.com/xtls)
+[https://github.com/xtls/xray-core](https://github.com/xtls/xray-core)
+[https://github.com/xtls](https://github.com/xtls)
 
 V2RAY CORE - VLESS+TLS, VMESS, multiple transports like WebSockets gRPC.
 
-[](https://github.com/v2ray/v2ray-core)
+[https://github.com/v2ray/v2ray-core](https://github.com/v2ray/v2ray-core)
 
 uTLS - client TLS fingerprint cloning
 
-[](https://github.com/refraction-networking/utls)
+[https://github.com/refraction-networking/utls](https://github.com/refraction-networking/utls)
 
 REALITY - option inside XRAY CORE. Refer XRAY Core.
 
@@ -366,7 +366,7 @@ Before I list what actually works remember random blocking can happen at any tim
 
 *If you ever get blocked with the listed methods don't panic*. Choose other VPS, other IP, other provider, other port and try again. If it doesn't work, do the same but with another method (enable fallback if proxies).
 
-- **VLESS-XTLS-uTLS-REALITY**. VLESS over XTLS with client side uTLS (ClientHello mimicry) and Reality obfuscation. Must be deployed on your own VPS. Frequent key rotation and firewall rules to drop active probes. Don't rely on single transport and have several fallbacks XTLS, WebSocket+TLS or Reality - [](https://github.com/XTLS/Xray-core)
+- **VLESS-XTLS-uTLS-REALITY**. VLESS over XTLS with client side uTLS (ClientHello mimicry) and Reality obfuscation. Must be deployed on your own VPS. Frequent key rotation and firewall rules to drop active probes. Don't rely on single transport and have several fallbacks XTLS, WebSocket+TLS or Reality - [https://github.com/XTLS/Xray-core](https://github.com/XTLS/Xray-core)
 - Your own private OBFS4 Bridge with IAT Mode 2
 
 How *VLESS-XTLS-uTLS-REALITY* combination with fallbacks works against GFW?
