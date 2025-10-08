@@ -1,6 +1,6 @@
 +++
-title = "Links"
-description = "My projects page."
+title = "Projects"
+description = "Description"
 template = "projects.html"
 
 [extra]
