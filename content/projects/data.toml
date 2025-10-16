@@ -4,7 +4,7 @@ description = "This is my PGP public key if you would like to contact me"
 tags = ["security"]
 links = [
   { name = "PGP Key", url = "https://termbin.com/s1oe" },
-  { name = "PGP Key", url = "https://pastebin.com/iTHmZ62K"}
+  { name = "PGP Key", url = "https://raw.githubusercontent.com/0ryX/pgp-public-key/refs/heads/main/pgp.txt"}
 
 ]
 
