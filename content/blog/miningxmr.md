@@ -17,7 +17,7 @@ Hello again,
 
    ICE raids and anti-ICE protests are common, mixing themselves within the Free Palestine movement. Recently an ICE agent shot and killed Renee Good in Minneapolis on January 7, 2026. On January 8th Federal agents shot 2 more people in Portland, On January 14th another man was shot by an ICE agent in Minneapolis. January 21st agents shot a man in Willowbrook California and today January 24th Federal agents shot Alex Pretti 9-10 times after wrestling him to the ground in Minneapolis Minnesota. He was surrounded and being attacked by several agents. Minnesota seems to be a hotspot for these incidents and the front line of the resistance.
 
-## The Eye of the Storm
+## The Eye Of The Storm
 
    In JRR Tolkien's *The Lord Of the Rings*, a *"Palantir"* is a powerful seeing stone allowing the user to see something taking place far away. But if it falls into the wrong hands - like it did when it came under the control of Sauron - it can be used to distort reality, and deceive and manipulate its viewer. 
 
