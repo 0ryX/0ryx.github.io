@@ -1,0 +1,16 @@
+<div class="not-prose py-2">
+    <blockquote class="row row gap-2 text-black dark:text-white p-2 outline outline-3 outline-slate-400 dark:outline-slate-600">
+        {% if icon_path %}
+            {% set icon = load_data(path=icon_path) %}
+            <div>
+                {{ icon | safe }}
+            </div>
+        {% endif %}
+        <div>
+            {% if header %}
+            <p><strong>{{ header }}</strong></p>
+            {% endif %}
+            {{ body | markdown | safe }}
+        </div>
+    </blockquote>
+</div>
