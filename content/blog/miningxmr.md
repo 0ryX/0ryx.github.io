@@ -29,7 +29,7 @@ Hello again,
 
 ## Fighting Back Will Take All of Us
 
-   {% question(header="What is the difference between digital rights and human rights?") %}
+   **What is the difference between digital rights and human rights?**
 
   * When was the last time you learned about a police or military force harming a community?
   * Where did you learn that information?
@@ -53,13 +53,11 @@ Hello again,
    Late last year, Monero faced a notable attack when Qubic — a rival cryptocurrency project — temporarily gained control over a majority of the network's hashrate. In August 2025, Qubic miners took 51% dominance (with peaks reportedly as high as 65% - though not proven). But this was an expensive attack and Qubic couldn't hold control very long. This shows the need for individuals to run their own node and by doing so, helping secure the network to make it stronger. Decentralization is what make's Monero so strong and the number one cryptocurrency in privacy and this attack highlights why decentralization remains a crucial part of Monero's philosophy and long-term security and resilience. By running your own node using the official Monero software, [monero-wallet-cli](https://www.getmonero.org/downloads/#cli), is the single best way a user can contribute to the privacy and security of the Monero blockchain,
 
          
-   {% note(header="Here are some reasons why:") %}
    * *Enhanced personal privacy:* connecting your wallet to a local node instead of a remote node, you avoid leaking transaction data or IP addresses to third parties. Your own node ensures you're the only one with that visibility, maximizing Monero's ring signatures, stealth addresses, and overall privacy guarantees.
 
    * *Strengthening the blockchain:* you increases the network's decentralization by distributing the load of syncing, validating, and relaying blocks/transactions. This makes the entire ecosystem harder to censor, attack, or manipulate.
 
    * *Helping prevent or mitigate attacks:* A more decentralized network with thousands of independent nodes reduces the impact of any single entity (or coordinated group) controlling hashrate. While nodes don't directly mine or add hashrate, they enforce consensus rules, reject invalid blocks/chains, and help the honest chain prevail faster during reorg attempts. In a 51% scenario, widespread node participation ensures quicker detection and recovery, limiting what an attacker can achieve.
-   {% end %}
 
 ## Getting Started
 
@@ -357,14 +355,12 @@ Hello again,
 
 ## In Closing 
 
-   In an era of escalating online surveillance and increased censorship, tools like Monero (XMR) stand out as one of the few technologies an individuals can use to reclaim sovereignty over their data. Monero's default privacy — through ring signatures, stealth addresses, and confidential transactions — makes it exceptionally resistant to chain analysis, government tracking, and automated surveillance systems. Unlike transparent blockchains (e.g., Bitcoin), where every transaction is publicly linkable, Monero hides sender, receiver, and amount by design.
-   
-   Ultimately, Monero embodies a core cypherpunk ideal: financial privacy as a human right. In a world moving toward programmable money, CBDCs, and total transaction visibility, tools that resist surveillance aren't luxuries — they're necessities for anyone who values dignity, dissent, or simple independence. Whether you're mining to support the network, donating privately, or safeguarding your own savings, you're contributing to a broader pushback against centralized control. Stay vigilant, keep learning, update your software, and above all — protect your privacy like your freedom depends on it. Because one day, it just might. Stay sovereign.
+In our data driven and AI economy online surveillance has become the norm, but it doesn't have to be and we cannot trade comfort for human rights. Tools like Monero are one of the last true standing bastions for privacy and data ownership, and even that is being questioned right now with the new coming hard fork. If you're on r/Monero at all in the last week you'll have seen these topics being [discussed](https://www.reddit.com/r/Monero/comments/1qjsizi/this_controversy_is_really_good/). But again we have to think that there are forces at play a lot larger then what were used to seeing and I really like what is stated [here](https://www.reddit.com/r/Monero/comments/1qnwhru/relevant_reminder_monero_is_constantly_under/), Monero by design is a threat and I know for a fact governments are using a data analytics tool called Chainanalysis that tracks every single block transaction and wallet in seconds. Reading these reports, I'd rather not cite those sources here but if you know how to get in touch with me, which I've found that some of you do (I may have had a stalker or two) then reach out and I shall share them with you. Fact of the matter is Monero, even with the power of AI and all their tools and tricks and money they can throw at it, still cannot be beat. Through ring signatures, stealth addresses, and confidential transactions - make it exceptionally resistant to "chain analysis" or Chainanalysis if you will.... government tracking, and automated surveillance systems. 
 
-(And remember: verify everything, trust code over promises, and never stop questioning surveillance.)
+Monero embodies at its core, privacy is and as a basic human right. And Monero's solution towards mining is directed directly at everyday users, keeping those with the potential to spend more money on larger GPU's out of the equation and allowing only daily driver CPU to mine it's blocks means this crypto currency has had you in mind all along. So why not participate in securing its blockchain and use decentralized pools like p2pool and get rewarded for it in the process? Whether you're mining to support the network, donating privately, or safeguarding your own savings, you're contributing to a broader fight against centralized control.Stay vigilant, keep learning, update often and above all = protect your data and privacy. Stay sovereign... and never stop questioning surveillance.
 
 - 0ryX Signing off 🏴‍☠️
 
-   ........................................................... 
-   This has been a broadcast from your local resistance network
-   ...........................................................
+........................................................... 
+This has been a broadcast from your local resistance network
+...........................................................
