@@ -360,7 +360,7 @@ In our data driven and AI economy online surveillance has become the norm, but i
 Monero embodies at its core, privacy is and as a basic human right. And Monero's solution towards mining is directed directly at everyday users, keeping those with the potential to spend more money on larger GPU's out of the equation and allowing only daily driver CPU to mine it's blocks means this crypto currency has had you in mind all along. So why not participate in securing its blockchain and use decentralized pools like p2pool and get rewarded for it in the process? Whether you're mining to support the network, donating privately, or safeguarding your own savings, you're contributing to a broader fight against centralized control.Stay vigilant, keep learning, update often and above all = protect your data and privacy. Stay sovereign... and never stop questioning surveillance.
 
 
-- 🏴‍☠️ 0ryX Signing off 
+- 🏴‍☠️ 0ryX Signing off
 
 ........................................................... 
 This has been a broadcast from your local resistance network
