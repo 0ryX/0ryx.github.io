@@ -53,11 +53,13 @@ Hello again,
    Late last year, Monero faced a notable attack when Qubic — a rival cryptocurrency project — temporarily gained control over a majority of the network's hashrate. In August 2025, Qubic miners took 51% dominance (with peaks reportedly as high as 65% - though not proven). But this was an expensive attack and Qubic couldn't hold control very long. This shows the need for individuals to run their own node and by doing so, helping secure the network to make it stronger. Decentralization is what make's Monero so strong and the number one cryptocurrency in privacy and this attack highlights why decentralization remains a crucial part of Monero's philosophy and long-term security and resilience. By running your own node using the official Monero software, [monero-wallet-cli](https://www.getmonero.org/downloads/#cli), is the single best way a user can contribute to the privacy and security of the Monero blockchain,
 
          
-{% note(header="Here are some reasons why:") %}
-* *Enhanced personal privacy:* When you connect your wallet...
-* *Strengthening the blockchain:* Every additional full node...
-* *Helping prevent or mitigate attacks like this:* A more decentralized...
-{% end %}
+   {% note(header="Here are some reasons why:") %}
+   * *Enhanced personal privacy:* When you connect your wallet to your own local node instead of a remote node run by someone else, you avoid leaking transaction data or IP addresses to third parties. Remote nodes can potentially log which addresses you're querying or linking your activity - your own node ensures you're the only one with that visibility, maximizing Monero's ring signatures, stealth addresses, and overall privacy guarantees.
+
+   * *Strengthening the blockchain:* very additional full node increases the network's decentralization by distributing the load of syncing, validating, and relaying blocks/transactions. This makes the entire ecosystem harder to censor, attack, or manipulate.
+
+   * *Helping prevent or mitigate attacks like this:* A more decentralized network with thousands of independent nodes reduces the impact of any single entity (or coordinated group) controlling hashrate. While nodes don't directly mine or add hashrate, they enforce consensus rules, reject invalid blocks/chains, and help the honest chain prevail faster during reorg attempts. In a 51% scenario, widespread node participation ensures quicker detection and recovery, limiting what an attacker can achieve.
+   {% end %}
 
 ## Getting Started
 
