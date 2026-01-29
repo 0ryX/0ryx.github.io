@@ -36,7 +36,6 @@ Hello again,
   * When was the last time you saw hundreds of thousands of people on the street, calling for legislative change?
   * Where did you see those pictures? 
   * How did those people learn about that protest and decide to join it?
-   {% end %}
 
    We use the internet to spread information and anybody fighting for human rights today is using some sort of technology: to share flyers or photos on social media, to communicate with a group on a messaging app, or to send messages to their representatives via email. Technology makes the fight for human rights possible on a global scale. The threat is that most tech we use today is controlled by Big Tech. While they may be conducting surveillance and controlling the flow of information. What you see is shown to you through straight up censorship, algorithm manipulation, and shadow banning. Governments are doing the same to repress and censor us. Because we are a direct threat to their power. 
 
