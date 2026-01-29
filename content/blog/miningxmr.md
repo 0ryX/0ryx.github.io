@@ -54,11 +54,11 @@ Hello again,
 
          
    {% note(header="Here are some reasons why:") %}
-   * *Enhanced personal privacy:* When you connect your wallet to your own local node instead of a remote node run by someone else, you avoid leaking transaction data or IP addresses to third parties. Remote nodes can potentially log which addresses you're querying or linking your activity - your own node ensures you're the only one with that visibility, maximizing Monero's ring signatures, stealth addresses, and overall privacy guarantees.
+   * *Enhanced personal privacy:* connecting your wallet to a local node instead of a remote node, you avoid leaking transaction data or IP addresses to third parties. Your own node ensures you're the only one with that visibility, maximizing Monero's ring signatures, stealth addresses, and overall privacy guarantees.
 
-   * *Strengthening the blockchain:* very additional full node increases the network's decentralization by distributing the load of syncing, validating, and relaying blocks/transactions. This makes the entire ecosystem harder to censor, attack, or manipulate.
+   * *Strengthening the blockchain:* you increases the network's decentralization by distributing the load of syncing, validating, and relaying blocks/transactions. This makes the entire ecosystem harder to censor, attack, or manipulate.
 
-   * *Helping prevent or mitigate attacks like this:* A more decentralized network with thousands of independent nodes reduces the impact of any single entity (or coordinated group) controlling hashrate. While nodes don't directly mine or add hashrate, they enforce consensus rules, reject invalid blocks/chains, and help the honest chain prevail faster during reorg attempts. In a 51% scenario, widespread node participation ensures quicker detection and recovery, limiting what an attacker can achieve.
+   * *Helping prevent or mitigate attacks:* A more decentralized network with thousands of independent nodes reduces the impact of any single entity (or coordinated group) controlling hashrate. While nodes don't directly mine or add hashrate, they enforce consensus rules, reject invalid blocks/chains, and help the honest chain prevail faster during reorg attempts. In a 51% scenario, widespread node participation ensures quicker detection and recovery, limiting what an attacker can achieve.
    {% end %}
 
 ## Getting Started
