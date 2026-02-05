@@ -65,12 +65,14 @@ outdate_alert_text_after = " days ago and may be out of date."
 #call_to_action_footer = "<span style='color:#e29292;'>PGP Fingerprint: F55F AB7B 9E68 D2B0 6539 5839 272F 8AB4 739D 05F4</span>","<span style='color:#66cdab;'>Monero (XMR): </span>"
 
 call_to_action_footer = """
-<span style='color:#e29292;'>
-PGP Fingerprint: F55F AB7B 9E68 D2B0 6539 5839 272F 8AB4 739D 05F4
-</span><br>
-<span style='color:#66cdab;'>
-Monero: 86UwZW3AQey3CnQbp1VmtnHgHVJ7UJPCw6tzy1ina4dhQSZW8RJP7Ey7wH3GeVqAGGPDGscecndnzfgRr27qe68aCFC6j7p
-</span>
+<div style="font-family: monospace; font-size: 14px;">
+    <div style="color:#e29292; margin-bottom: 8px;">
+        PGP: F55F AB7B 9E68 D2B0 6539 5839 272F 8AB4 739D 05F4
+    </div>
+    <div style="color:#66cdab; word-break: break-all; opacity: 0.9;">
+        XMR: 86UwZW3AQey3CnQbp1VmtnHgHVJ7UJPCw6tzy1ina4dhQSZW8RJP7Ey7wH3GeVqAGGPDGscecndnzfgRr27qe68aCFC6j7p
+    </div>
+</div>
 """
 
 
