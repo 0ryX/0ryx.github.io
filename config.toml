@@ -42,7 +42,7 @@ avatar = "img/avatar.webp"            # Your avatar
 links = [                             # Your links
     { name = "Codeberg", icon = "codeberg", url = "https://codeberg.org/0ryx" },
     { name = "Mastodon", icon = "mastodon", url = "https://kolektiva.social/@0xBlockz" },
-    { name = "Email", icon = "email", url = "mailto:deepnet@cock.lu" },
+    { name = "Email", icon = "email", url = "mailto:0xnjxa@tutamail.com" },
 ]
 
 nav_separator = " > "
@@ -62,7 +62,17 @@ outdate_alert_days = 120              # How many days will a post be outdated by
 outdate_alert_text_before = "This article was last updated "
 outdate_alert_text_after = " days ago and may be out of date."
 
-call_to_action_footer = "<span style='color:#e29292;'>PGP Fingerprint: F55F AB7B 9E68 D2B0 6539 5839 272F 8AB4 739D 05F4</span>"
+#call_to_action_footer = "<span style='color:#e29292;'>PGP Fingerprint: F55F AB7B 9E68 D2B0 6539 5839 272F 8AB4 739D 05F4</span>","<span style='color:#66cdab;'>Monero (XMR): </span>"
+
+call_to_action_footer = """
+<span style='color:#e29292;'>
+PGP Fingerprint: F55F AB7B 9E68 D2B0 6539 5839 272F 8AB4 739D 05F4
+</span><br>
+<span style='color:#66cdab;'>
+Monero: 86UwZW3AQey3CnQbp1VmtnHgHVJ7UJPCw6tzy1ina4dhQSZW8RJP7Ey7wH3GeVqAGGPDGscecndnzfgRr27qe68aCFC6j7p
+</span>
+"""
+
 
 #footer_copyright = "© 2025 0ryX 🏴"
 footer_credits = false                 # Whether to show "Powered by Zola and Serene" in footer
